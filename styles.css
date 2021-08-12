@@ -253,7 +253,41 @@ button {
     height: 430px;
     width: 759px;
     margin: 42px auto;
-    background-color: blue;
+    background-color: blueviolet;
+}
+
+.quizzResult p {
+    font-size: 23px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.quizzResult img {
+    height: 273px;
+    width: 364px;
+}
+
+.successText {
+    background-color: #EC362D;
+    width: 727px;
+    height: 99px;
+    display: flex;
+    margin: 18px auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.levelInfo {
+    display: flex;
+    margin: 18px auto;
+    justify-content: space-between;
+}
+
+.levelText {
+    height: 273px;
+    width: 364px;
+    background-color: gray;
 }
 
 .basic{
