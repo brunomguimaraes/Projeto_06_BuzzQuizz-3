@@ -249,6 +249,13 @@ button {
     margin-bottom: 16px;
 }
 
+.quizzResult {
+    height: 430px;
+    width: 759px;
+    margin: 42px auto;
+    background-color: blue;
+}
+
 .basic{
     display: flex;
     justify-content: center;
