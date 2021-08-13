@@ -8,6 +8,7 @@
 
         <link rel="stylesheet" type="text/css" href="reset.css">
         <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" href="createQuizz.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,7 +68,7 @@
             <!--PAGE 1 (QUIZZES LIST)-->
 
             <!--PAGE 2 (QUIZZES PAGE)-->
-            <section class="quizzPage">
+            <section class="quizzPage hide-class">
 
                 <div class="quizzCover">
                     <img src="https://img.quizur.com/f/img60229135637eb5.97078183.jpg?lastEdited=1612878137">
@@ -165,8 +166,6 @@
 
                     </div>
 
-                    
-
                 </div>
 
             </section>
@@ -174,41 +173,27 @@
 
 
             <!--PAGE 3.1 (QUIZZES' BASIC INFO)-->
-            <section class="createQuizzes hide-class">
-                <div class="basic">
-                    <div class="title">
-                        <span>Crie seu Quizz </span>
-                    </div>
+            <section class="createQuizzes">
+                    <span class="title-create-quizzes">Crie seu Quizz </span>
+                    <ul class="initial-form">
+                        <li>
+                            <input type="text" spellcheck="true" placeholder="Título do seu quizz">
+                        </li>
     
-                    <div class="createInput">
+                        <li>
+                            <input type="text" placeholder="URL da imagem do seu quizz">
+                        </li>
     
-                        <ul>
-                            <li>
-                                <input type="text" minlength="20" maxlength="65" 
-                                spellcheck="true" placeholder="Título do seu quizz">
-                            </li>
+                        <li>
+                            <input type="number" placeholder="Quantidade de perguntas do quizz">
+                        </li>
     
-                            <li>
-                                <input type="text" placeholder="URL da imagem do seu quizz">
-                            </li>
-    
-                            <li>
-                                <input type="number" placeholder="Quantidade de perguntas do quizz"
-                                id="opções" name="opções" max="3" min="1">
-                            </li>
-    
-                            <li>
-                                <input type="number" placeholder="Quantidade de níveis do quizz"
-                                max="3" min="1">
-                            </li>
-                        </ul>
+                        <li>
+                            <input type="number" placeholder="Quantidade de níveis do quizz">
+                        </li>
+                    </ul>
                         
-                    </div>
-
-                    <button>Prosseguir pra criar perguntas</button>
-
-                </div>
-
+                    <button class="forward-button">Prosseguir pra criar perguntas</button>
             </section>
             <!--PAGE 3.1 (QUIZZES' BASIC INFO)-->
 
