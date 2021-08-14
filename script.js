@@ -9,6 +9,7 @@ function getAllQuizzes () {
 
 function loadAllQuizzes (response) {
     allQuizzes = response.data;
+    console.log(response.data)
 
     showAllQuizzes();
     showUserQuizzes();
@@ -30,7 +31,7 @@ function showUserQuizzes () {
 
     for (let i = 0; i < userQuizzes.length; i++) {
         ulQuizzes.innerHTML +=  `
-        <li onclick="accessQuizz()">
+        <li onclick="findQuizz(this)">
             <img src=${userQuizzes[i].image}>
             <p class="quizzTitle">${userQuizzes[i].title}</p>
         </li>`
@@ -43,7 +44,7 @@ function showAllQuizzes () {
 
     for (let i = 0; i < allQuizzes.length; i++) {
         ulQuizzes.innerHTML += `
-        <li onclick="accessQuizz()">
+        <li onclick="findQuizz(this)">
             <img src=${allQuizzes[i].image}>
             <p class="quizzTitle">${allQuizzes[i].title}</p>
         </li>`
@@ -65,6 +66,78 @@ function enterQuizz () {
     document.querySelector('.creationCompleted').classList.add('hide-class');
 
     getAllQuizzes();
+}
+
+function goToQuizzPage (){
+    document.querySelector('.userQuizzes').classList.add('hide-class');
+    document.querySelector('.emptyUserQuizzes').classList.add('hide-class');
+    document.querySelector('.filledUserQuizzes').classList.add('hide-class');
+    document.querySelector('.allQuizzes').classList.add('hide-class');
+
+    document.querySelector('.quizzResult').classList.add('hide-class');
+    document.querySelector('.resultButtons').classList.add('hide-class');
+
+    document.querySelector('.quizzPage').classList.remove('hide-class');
+
+
+
+}
+
+function findQuizz (quizz) {
+    const title = quizz.querySelector('.quizzTitle').innerHTML;
+
+    for (let i = 0; i < allQuizzes.length; i++) {
+        if (title === allQuizzes[i].title) {
+            document.querySelector('.quizzCover .quizzTitle').innerHTML = allQuizzes[i].title;
+            document.querySelector('.quizzCover img').src = allQuizzes[i].image;
+
+            const ulQuestions = document.querySelector('.quizzPage ul');
+            ulQuestions.innerHTML = "";
+
+            for (let j = 0; j < allQuizzes[i].questions.length; j++) {
+                ulQuestions.innerHTML += `
+                <li>
+                        <div class="quizzQuestion">
+
+                            <div class="questionText">
+                                <p>${allQuizzes[i].questions[j].title}</p>
+                            </div>
+        
+                            <div class="possibleAnswers">
+        
+                                <ul>
+        
+                                    <li>
+                                        <img src="https://s3cf.recapguide.com:444/img/tv/24/7x24/Friends-Season-7-Episode-24-2-e9d3.jpg">
+                                        <p>Gatíneo</p>
+                                    </li>
+        
+                                    <li>
+                                        <img src="https://s3cf.recapguide.com:444/img/tv/24/7x24/Friends-Season-7-Episode-24-2-e9d3.jpg">
+                                        <p>Gatíneo</p>
+                                    </li>
+        
+                                    <li>
+                                        <img src="https://s3cf.recapguide.com:444/img/tv/24/7x24/Friends-Season-7-Episode-24-2-e9d3.jpg">
+                                        <p>Gatíneo</p>
+                                    </li>
+        
+                                    <li>
+                                        <img src="https://s3cf.recapguide.com:444/img/tv/24/7x24/Friends-Season-7-Episode-24-2-e9d3.jpg">
+                                        <p>Gatíneo</p>
+                                    </li>
+        
+                                </ul>
+        
+                            </div>                    
+        
+                        </div>
+                    </li>`
+                
+            }
+        }        
+    } 
+    goToQuizzPage();   
 }
 
 enterQuizz();
