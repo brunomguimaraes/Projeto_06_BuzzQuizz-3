@@ -26,6 +26,10 @@ header {
     z-index: 1;
 }
 
+header:hover {
+    cursor: pointer;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -46,6 +50,10 @@ h1 {
 button:hover {
     cursor: pointer;
     filter: brightness(92%);
+}
+
+.hide-class {
+    display: none;
 }
 
 .userQuizzes {
@@ -161,10 +169,6 @@ button:hover {
     color: #FFFFFF;
     bottom: 16px;
     left: 8px;
-}
-
-.hide-class {
-    display: none;
 }
 
 .quizzPage {

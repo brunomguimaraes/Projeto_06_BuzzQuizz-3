@@ -20,7 +20,7 @@
 
     <body>
 
-        <header>
+        <header onclick="enterQuizz()">
             BuzzQuizz
         </header>
 
@@ -35,11 +35,11 @@
                     <button onclick="startCreateQuizzes()">Criar Quizz</button>
                 </div>
 
-                <div class="filledUserQuizzes hide-class">
+                <div class="filledUserQuizzes">
 
                     <span>
                         Seus Quizzes 
-                        <ion-icon name="add-circle"></ion-icon>
+                        <ion-icon name="add-circle" onclick="startCreateQuizzes()"></ion-icon>
                     </span>                    
 
                     <ul>
@@ -52,7 +52,7 @@
 
             <section class="allQuizzes">
 
-                <div class="nome">
+                <div>
                     <span>Todos os Quizzes</span>
                 </div>
     
@@ -64,7 +64,7 @@
             <!--PAGE 1 (QUIZZES LIST)-->
 
             <!--PAGE 2 (QUIZZES PAGE)-->
-            <section class="quizzPage hide-class">
+            <section class="quizzPage">
 
                 <div class="quizzCover">
                     <img src="https://img.quizur.com/f/img60229135637eb5.97078183.jpg?lastEdited=1612878137">
@@ -173,7 +173,6 @@
             </section>
             <!--PAGE 2 (QUIZZES PAGE)-->
 
-
             <!--PAGE 3.1 (QUIZZES' BASIC INFO)-->
             <section class="createQuizzes">
                     <span class="title-create">Crie seu Quizz </span>
@@ -201,9 +200,13 @@
 
             <!--PAGE 3.2 (QUIZZES' QUESTIONS)-->
             <section class="createQuestions">
+
                 <span class="title-create">Crie suas perguntas</span>
+
                     <ul class="questioning">
+
                         <li class="questions">
+
                             <div class="subtitle">
                                 <span>Pergunta 1</span>
                                 <ion-icon name="create-outline"></ion-icon>
@@ -239,71 +242,69 @@
             <!--PAGE 3.2 (QUIZZES' QUESTIONS)-->
 
             <!--PAGE 3.3 (QUIZZES' LEVELS)-->
-            <section class="createLevels hide-class">
-                <div class="hide-class">
-                    <div class="title">
-                        <span>Agora, decida os níveis!</span>
-                    </div>  
+            <section class="createLevels">
+
+                <div class="title">
+                    <span>Agora, decida os níveis!</span>
+                </div>  
                     
-                    <div class="creatingLevels">
+                <div class="creatingLevels">
     
-                        <div class="level">
-                            <div class="subtitle">
-                                <span>Nível 1</span>
-                            </div>
-    
-                            <ul>
-                                <li>
-                                    <input type="text" spellcheck="true" minlength="10"
-                                    placeholder="Título do nível">
-                                </li>
-    
-                                <li>
-                                    <input type="number" 
-                                    placeholder="% de acerto mínima">
-                                </li>
-    
-                                <li>
-                                    <input type="text" 
-                                    placeholder="URL da imagem do nível">
-                                </li>
-    
-                                <li>
-                                    <input class="description" type="text" spellcheck="true" minlength="30"
-                                    placeholder="Descrição do nível">
-                                </li>
-                            </ul>
+                    <div class="level">
+
+                        <div class="subtitle">
+                            <span>Nível 1</span>
                         </div>
     
-                        <div class="levelWaiting">
-                            <div class="subtitle">
-                                <span>Nível 2</span>
-                            </div>
-                            <div class="icon">
-                                <ion-icon name="create-outline"></ion-icon>
-                            </div>
-                        </div> 
+                        <ul>
+                            <li>
+                                <input type="text" spellcheck="true" minlength="10"
+                                placeholder="Título do nível">
+                            </li>
     
-                        <div class="levelWaiting">
-                            <div class="subtitle">
-                                <span>Nível 3</span>
-                            </div>
-                            <div class="icon">
-                                <ion-icon name="create-outline"></ion-icon>
-                            </div>
-                        </div> 
+                            <li>
+                                <input type="number" 
+                                placeholder="% de acerto mínima">
+                            </li>
     
-                        <button>Finalizar Quizz</button>
+                            <li>
+                                <input type="text" 
+                                placeholder="URL da imagem do nível">
+                            </li>
     
+                            <li>
+                                <input class="description" type="text" spellcheck="true" minlength="30"
+                                placeholder="Descrição do nível">
+                            </li>
+                        </ul>
                     </div>
+    
+                    <div class="levelWaiting">
+                        <div class="subtitle">
+                            <span>Nível 2</span>
+                        </div>
+                        <div class="icon">
+                            <ion-icon name="create-outline"></ion-icon>
+                        </div>
+                    </div> 
+    
+                    <div class="levelWaiting">
+                        <div class="subtitle">
+                            <span>Nível 3</span>
+                        </div>
+                        <div class="icon">
+                            <ion-icon name="create-outline"></ion-icon>
+                        </div>
+                    </div> 
+    
+                    <button>Finalizar Quizz</button>    
                 
                 </div>
-
             </seaction>  
             <!--PAGE 3.3 (QUIZZES' LEVELS)--> 
 
             <!--PAGE 3.4 (QUIZZES' SUCCESS)-->
-            <section class="creationCompleted hide-class">
+            <section class="creationCompleted">
                 <div>
                     <div class="finished">
                         <div class="title">

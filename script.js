@@ -9,21 +9,30 @@ function getAllQuizzes () {
 
 function loadAllQuizzes (response) {
     allQuizzes = response.data;
-    console.log(allQuizzes);
 
     showAllQuizzes();
     showUserQuizzes();
+
+    if (userQuizzes.length === 0) {
+        document.querySelector('.userQuizzes').classList.remove('hide-class');
+        document.querySelector('.emptyUserQuizzes').classList.remove('hide-class');
+        document.querySelector('.allQuizzes').classList.remove('hide-class');
+    } else {
+        document.querySelector('.userQuizzes').classList.remove('hide-class');
+        document.querySelector('.filledUserQuizzes').classList.remove('hide-class');
+        document.querySelector('.allQuizzes').classList.remove('hide-class');
+    }
 }
 
 function showUserQuizzes () {
     const ulQuizzes = document.querySelector('.filledUserQuizzes ul');
     ulQuizzes.innerHTML = "";
 
-    for (let i = 0; i < allQuizzes.length; i++) {
+    for (let i = 0; i < userQuizzes.length; i++) {
         ulQuizzes.innerHTML +=  `
-        <li>
-            <img src=${allQuizzes[i].image}>
-            <p class="quizzTitle">${allQuizzes[i].title}</p>
+        <li onclick="accessQuizz()">
+            <img src=${userQuizzes[i].image}>
+            <p class="quizzTitle">${userQuizzes[i].title}</p>
         </li>`
     }
 }
@@ -34,11 +43,28 @@ function showAllQuizzes () {
 
     for (let i = 0; i < allQuizzes.length; i++) {
         ulQuizzes.innerHTML += `
-        <li>
+        <li onclick="accessQuizz()">
             <img src=${allQuizzes[i].image}>
             <p class="quizzTitle">${allQuizzes[i].title}</p>
         </li>`
     }
 }
 
-getAllQuizzes ();
+function enterQuizz () {   
+
+    document.querySelector('.userQuizzes').classList.add('hide-class');
+    document.querySelector('.emptyUserQuizzes').classList.add('hide-class');
+    document.querySelector('.filledUserQuizzes').classList.add('hide-class');
+    document.querySelector('.allQuizzes').classList.add('hide-class');
+
+    document.querySelector('.quizzPage').classList.add('hide-class');
+
+    document.querySelector('.createQuizzes').classList.add('hide-class');
+    document.querySelector('.createQuestions').classList.add('hide-class');
+    document.querySelector('.createLevels').classList.add('hide-class');
+    document.querySelector('.creationCompleted').classList.add('hide-class');
+
+    getAllQuizzes();
+}
+
+enterQuizz();
