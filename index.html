@@ -32,11 +32,11 @@
 
             <!--PAGE 1 (QUIZZES LIST)-->
 
-            <section class="userQuizzes hide-class">
+            <section class="userQuizzes">
 
                 <div class="emptyUserQuizzes">
                     <h1>Você não criou nenhum quizz ainda :(</h1>
-                    <button>Criar Quizz</button>
+                    <button onclick="startCreateQuizzes()">Criar Quizz</button>
                 </div>
 
                 <div class="filledUserQuizzes hide-class">
@@ -177,23 +177,23 @@
                     <span class="title-create-quizzes">Crie seu Quizz </span>
                     <ul class="initial-form">
                         <li>
-                            <input type="text" spellcheck="true" placeholder="Título do seu quizz">
+                            <input type="text" id="isTitle"spellcheck="true" placeholder="Título do seu quizz">
                         </li>
     
                         <li>
-                            <input type="text" placeholder="URL da imagem do seu quizz">
+                            <input type="text" id="isImg" placeholder="URL da imagem do seu quizz">
                         </li>
     
                         <li>
-                            <input type="number" placeholder="Quantidade de perguntas do quizz">
+                            <input type="number" id="isQuestions" placeholder="Quantidade de perguntas do quizz">
                         </li>
     
                         <li>
-                            <input type="number" placeholder="Quantidade de níveis do quizz">
+                            <input type="number" id="isLevels" placeholder="Quantidade de níveis do quizz">
                         </li>
                     </ul>
                         
-                    <button class="forward-button">Prosseguir pra criar perguntas</button>
+                    <button class="forward-button" onclick="finishCreateQuizzes()">Prosseguir pra criar perguntas</button>
             </section>
             <!--PAGE 3.1 (QUIZZES' BASIC INFO)-->
 
@@ -373,5 +373,6 @@
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <script src="script.js"></script>
+        <script src="createQuizz.js"></script>
     </body>
 </html>
