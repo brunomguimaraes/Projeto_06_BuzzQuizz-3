@@ -1,17 +1,6 @@
 let quizzTitle, quizzImg = "";
 let quizzQuestions, quizzLevels = 0;
 
-function startCreateQuizzes() {
-    const disableUser = document.querySelector('.userQuizzes');
-    const disableAll = document.querySelector('.allQuizzes');
-
-    disableUser.classList.add('hide-class');
-    disableAll.classList.add('hide-class');
-
-    const showCreateQuizzes = document.querySelector('.createQuizzes');
-    showCreateQuizzes.classList.remove('hide-class');
-}
-
 function validateUrl(string) {  
     try {
         url = new URL(string);

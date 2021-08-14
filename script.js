@@ -1,5 +1,8 @@
 let allQuizzes = [];
 let userQuizzes = [];
+let quizzQuestions = [];
+let questionAnswers = [];
+let quizzLevels = [];
 
 function getAllQuizzes () {
     const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes');
@@ -95,11 +98,12 @@ function findQuizz (quizz) {
             ulQuestions.innerHTML = "";
 
             for (let j = 0; j < allQuizzes[i].questions.length; j++) {
+                
                 ulQuestions.innerHTML += `
-                <li>
+                    <li>
                         <div class="quizzQuestion">
 
-                            <div class="questionText">
+                            <div class="questionText" style="background-color:${allQuizzes[i].questions[j].color}">
                                 <p>${allQuizzes[i].questions[j].title}</p>
                             </div>
         
@@ -107,37 +111,39 @@ function findQuizz (quizz) {
         
                                 <ul>
         
-                                    <li>
-                                        <img src="https://s3cf.recapguide.com:444/img/tv/24/7x24/Friends-Season-7-Episode-24-2-e9d3.jpg">
-                                        <p>Gatíneo</p>
-                                    </li>
-        
-                                    <li>
-                                        <img src="https://s3cf.recapguide.com:444/img/tv/24/7x24/Friends-Season-7-Episode-24-2-e9d3.jpg">
-                                        <p>Gatíneo</p>
-                                    </li>
-        
-                                    <li>
-                                        <img src="https://s3cf.recapguide.com:444/img/tv/24/7x24/Friends-Season-7-Episode-24-2-e9d3.jpg">
-                                        <p>Gatíneo</p>
-                                    </li>
-        
-                                    <li>
-                                        <img src="https://s3cf.recapguide.com:444/img/tv/24/7x24/Friends-Season-7-Episode-24-2-e9d3.jpg">
-                                        <p>Gatíneo</p>
-                                    </li>
-        
                                 </ul>
         
-                            </div>                    
-        
+                            </div>
                         </div>
                     </li>`
+
+                const ulAnswers = document.querySelectorAll('.possibleAnswers ul')
+                ulAnswers[j].innerHTML = "";
+
+                for (let k = 0; k < allQuizzes[i].questions[j].answers.length; k++) {
+                    
+                    ulAnswers[j].innerHTML += `
+                        <li>
+                            <img src="${allQuizzes[i].questions[j].answers[k].image}">
+                            <p>${allQuizzes[i].questions[j].answers[k].text}</p>
+                        </li>`
+                }
                 
             }
         }        
     } 
     goToQuizzPage();   
+}
+
+function startCreateQuizzes() {
+    const disableUser = document.querySelector('.userQuizzes');
+    const disableAll = document.querySelector('.allQuizzes');
+
+    disableUser.classList.add('hide-class');
+    disableAll.classList.add('hide-class');
+
+    const showCreateQuizzes = document.querySelector('.createQuizzes');
+    showCreateQuizzes.classList.remove('hide-class');
 }
 
 enterQuizz();
