@@ -174,7 +174,7 @@
 
             <!--PAGE 3.1 (QUIZZES' BASIC INFO)-->
             <section class="createQuizzes">
-                    <span class="title-create-quizzes">Crie seu Quizz </span>
+                    <span class="title-create">Crie seu Quizz </span>
                     <ul class="initial-form">
                         <li>
                             <input type="text" id="isTitle"spellcheck="true" placeholder="Título do seu quizz">
@@ -199,88 +199,40 @@
 
             <!--PAGE 3.2 (QUIZZES' QUESTIONS)-->
             <section class="createQuestions">
-                <div class="hide-class">
-                    <div class="title">
-                        <span>Crie suas perguntas</span>
-                    </div>
-    
-                    <div class="questioning">
-                        
-                        <div class="questions">
-    
-                            <div class="question">
-                                <div class="subtitle">
-                                    <span>Pergunta 1</span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <input type="text" minlength="20" 
-                                        spellcheck="true" placeholder="Texto da pergunta">
-                                    </li>
-            
-                                    <li>
-                                        <input type="text" placeholder="Cor de fundo da pergunta">
-                                    </li>
-                                </ul>
+                <span class="title-create">Crie suas perguntas</span>
+                    <ul class="questioning">
+                        <li class="questions">
+                            <div class="subtitle">
+                                <span>Pergunta 1</span>
+                                <ion-icon name="create-outline"></ion-icon>
                             </div>
                             
-                            <div class="correctAnswer">
-                                <div class="subtitle">
-                                    <span>Resposta correta</span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <input type="text"  spellcheck="true" 
-                                        placeholder="Resposta correta">
-                                    </li>
-            
-                                    <li>
-                                        <input type="text" placeholder="URL da imagem">
-                                    </li>
-                                </ul>
+
+                            <div class="container-questions">
+                                
+                                <input type="text" spellcheck="true" placeholder="Texto da pergunta">
+                                <input type="text" placeholder="Cor de fundo da pergunta">
+
+                                <span>Resposta correta</span>
+
+                                <input type="text" spellcheck="true" placeholder="Resposta correta">
+                                <input type="text" placeholder="URL da imagem">
+                        
+                                <span>Respostas incorretas</span>
+
+                                <input type="text" spellcheck="true" placeholder="Resposta incorreta 1">
+                                <input type="text" placeholder="URL da imagem 1">
+
+                                <input type="text" spellcheck="true" placeholder="Resposta incorreta 2">
+                                <input type="text" placeholder="URL da imagem 2">
+
+                                <input type="text" spellcheck="true" placeholder="Resposta incorreta 3">
+                                <input type="text" placeholder="URL da imagem 3">
+
                             </div>
-        
-                            <div class="wrongAnswer">
-                                <div class="subtitle">
-                                    <span>Respostas incorretas</span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <input type="text"  spellcheck="true" 
-                                        placeholder="Resposta correta 1">
-                                    </li>
-            
-                                    <li>
-                                        <input type="text" placeholder="URL da imagem 1">
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-    
-                        <div class="questionWaiting">
-                            <div class="subtitle">
-                                <span>Pergunta 2</span>
-                            </div>
-                            <div class="icon">
-                                <ion-icon name="create-outline"></ion-icon>
-                            </div>
-                        </div> 
-    
-                        <div class="questionWaiting">
-                            <div class="subtitle">
-                                <span>Pergunta 3</span>
-                            </div>
-                            <div class="icon">
-                                <ion-icon name="create-outline"></ion-icon>
-                            </div>
-                        </div> 
-    
-                        <button>Prosseguir pra criar níveis</button>
-    
-                    </div>
-    
-                </div>
-                
+                        </li>
+                    </ul>
+                    <button class="forward-button">Prosseguir pra criar níveis</button>
             </section>
             <!--PAGE 3.2 (QUIZZES' QUESTIONS)-->
 
