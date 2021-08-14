@@ -1,8 +1,5 @@
 let allQuizzes = [];
 let userQuizzes = [];
-let quizzQuestions = [];
-let questionAnswers = [];
-let quizzLevels = [];
 
 function getAllQuizzes () {
     const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes');
@@ -81,9 +78,6 @@ function goToQuizzPage (){
     document.querySelector('.resultButtons').classList.add('hide-class');
 
     document.querySelector('.quizzPage').classList.remove('hide-class');
-
-
-
 }
 
 function findQuizz (quizz) {
