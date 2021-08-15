@@ -1,5 +1,6 @@
 let quizzTitle, quizzImg = "";
 let quizzQuestions, quizzLevels = 0;
+let printQuestions = [];
 
 function validateUrl(string) {  
     try {
@@ -90,7 +91,7 @@ function finishCreateQuestions() {
     let newQuestions = document.querySelectorAll('.questions');
     let areaQuestion = {};
     let verify = {};
-    let areaAnswer =[];
+    let areaAnswers = [];
 
     for (let i = 0; i < quizzQuestions; i++) {
         areaQuestion = {
@@ -104,15 +105,47 @@ function finishCreateQuestions() {
         let incorrectAnswerImg1 = newQuestions[i].querySelector('.incorrectAnswerImg1').value;
         let incorrectAnswer2 = newQuestions[i].querySelector('.incorrectAnswer2').value;
         let incorrectAnswerImg2 = newQuestions[i].querySelector('.incorrectAnswerImg2').value;
-        let incorrectAnswere3 = newQuestions[i].querySelector('.incorrectAnswere3').value;
+        let incorrectAnswer3 = newQuestions[i].querySelector('.incorrectAnswere3').value;
         let incorrectAnswerImg3 = newQuestions[i].querySelector('.incorrectAnswerImg3').value;
 
         verify = {
             option: correctAnswer,
-            image: correctAnswerIm,
+            image: correctAnswerImg,
             iscorrectAnswer: true
         };
-        areaAnswer.push(verify);
+        areaAnswers.push(verify);
+
+        if (incorrectAnswer1 !== '' && incorrectAnswerImg1 !== '') {
+            verify = {
+                option: incorrectAnswer1,
+                image: incorrectAnswerImg1,
+                iscorrectAnswer: false
+            };
+            areaAnswers.push(verify);
+        }
+        if (incorrectAnswer2 !== '' && incorrectAnswerImg2 !== '') {
+            verify = {
+                option: incorrectAnswer2,
+                image: incorrectAnswerImg2,
+                iscorrectAnswer: false
+            };
+            areaAnswers.push(verify);
+        }
+        if (incorrectAnswer3 !== '' && incorrectAnswerImg3 !== ''){
+            verify = {
+                option: incorrectAnswer3,
+                image: incorrectAnswerImg3,
+                iscorrectAnswer: false
+            };
+            areaAnswers.push(verify);
+        }
+
+        printQuestions.push(areaQuestion);
+        areaQuestion.answers = areaAnswers; // dica do phyton para testar
+        areaQuestion = {};
+        areaAnswers = [];
+        verify = {};
     }
+    console.log ('printQuestions')
 }
 
