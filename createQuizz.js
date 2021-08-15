@@ -89,6 +89,8 @@ function startCreateQuestions() {
 function finishCreateQuestions() {
     let newQuestions = document.querySelectorAll('.questions');
     let areaQuestion = {};
+    let verify = {};
+    let areaAnswer =[];
 
     for (let i = 0; i < quizzQuestions; i++) {
         areaQuestion = {
@@ -104,6 +106,13 @@ function finishCreateQuestions() {
         let incorrectAnswerImg2 = newQuestions[i].querySelector('.incorrectAnswerImg2').value;
         let incorrectAnswere3 = newQuestions[i].querySelector('.incorrectAnswere3').value;
         let incorrectAnswerImg3 = newQuestions[i].querySelector('.incorrectAnswerImg3').value;
+
+        verify = {
+            option: correctAnswer,
+            image: correctAnswerIm,
+            iscorrectAnswer: true
+        };
+        areaAnswer.push(verify);
     }
 }
 
