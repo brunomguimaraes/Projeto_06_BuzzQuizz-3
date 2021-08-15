@@ -56,6 +56,10 @@ button:hover {
     display: none;
 }
 
+.reduceOpacity {
+    opacity: 30%;
+}
+
 .userQuizzes {
     width: 1050px;
 }
