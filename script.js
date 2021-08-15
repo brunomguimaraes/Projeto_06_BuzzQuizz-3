@@ -2,6 +2,7 @@ let allQuizzes = [];
 let userQuizzes = [];
 let quizzAnswer = [];
 let quizzId;
+let correctAnswer = 0;
 
 function getAllQuizzes () {
     const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes');
@@ -90,6 +91,7 @@ function findQuizz (quizz) {
     for (let i = 0; i < allQuizzes.length; i++) {
         if (title === allQuizzes[i].title) {
             quizzId = i;
+
             document.querySelector('.quizzCover .quizzTitle').innerHTML = allQuizzes[i].title;
             document.querySelector('.quizzCover img').src = allQuizzes[i].image;
 
@@ -152,25 +154,39 @@ function checkAnswer(answer) {
 
     quizzAnswer.push(answer);
 
-    for (let i = 0; i < quizzAnswer.length; i++) {
-        if (quizzAnswer[i].classList.contains('correctAnswer')) {
-            console.log('resposta certa')
-        } else {
-            console.log('resposta errada')
-        }        
+    if (quizzAnswer.length === allQuizzes[quizzId].questions.length) {     
+        setTimeout(generateQuizzResult, 2000);
     }    
-    generateQuizzResult();
 }
 
 function generateQuizzResult () {
-    if (quizzAnswer.length === allQuizzes[quizzId].questions.length) {
-        const result = document.querySelector('.quizzResult')
+    calculateScore();
+
+    const result = document.querySelector('.quizzResult')
         result.classList.remove('hide-class');
 
         document.querySelector('.resultButtons').classList.remove('hide-class');
 
         result.scrollIntoView();
-    }
+
+    document.querySelector('.successText p')
+
+    
+    
+
+}
+
+function calculateScore (){
+    correctAnswer = 0;
+
+    for (let i = 0; i < quizzAnswer.length; i++) {
+        if (quizzAnswer[i].classList.contains('correctAnswer')) {
+            correctAnswer++;
+        }           
+    }   
+
+    const total = Math.round((correctAnswer / (allQuizzes[quizzId].questions.length)) * 100);
+    console.log(total);
 }
 
 function startCreateQuizzes() {

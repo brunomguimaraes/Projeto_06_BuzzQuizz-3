@@ -242,6 +242,11 @@ button:hover {
     margin-bottom: 16px;
 }
 
+.possibleAnswers li:hover {
+    cursor: pointer;
+    filter: brightness(80%);
+}
+
 .quizzResult {
     height: 430px;
     width: 759px;
