@@ -11,6 +11,16 @@ function validateUrl(string) {
     return true;
 }
 
+function hexColor (hex) {
+    let color = /^#[0-9A-F]{6}$/i.test(hex)
+    
+    if(color) {
+    return true
+    } else {
+    return false;
+    }
+}
+
 function validateCreateQuizzes() {
     if (quizzImg === '' || quizzTitle === '' || quizzLevels === '' || quizzQuestions === '') {
         alert ('Preencha todos os campos por favor');
@@ -146,6 +156,50 @@ function finishCreateQuestions() {
         areaAnswers = [];
         verify = {};
     }
-    console.log ('printQuestions')
+    if ( validateCreateQuestions()){
+        alert ('deu certo')
+    }
+    else{ 
+        alert ('falhou')
+        printQuestions = [];
+    }
+}
+
+function validateCreateQuestions() {
+    for (let i = 0; i < quizzQuestions; i++) {
+        console.log(printQuestions);
+        if (printQuestions[i].title === '' || printQuestions[i].color === ''){
+            alert ('Os campos precisam ser preenchidos');
+            return false;
+        }
+        else{
+            if(printQuestions[i].title.length < 20) {
+                alert ('O título precisa ter no mínimo 20 caracteres');
+                return false;
+            }
+            if (!hexColor (printQuestions[i].color)){
+                alert ('Insira uma cor válida');
+                return false;
+            }
+            for (let j = 0; j < printQuestions[i].answers.length; j++) {
+                console.log('entrei no fofo')
+                if (printQuestions[i].answers[j].text === '' || printQuestions[i].answers[j].image === ''){
+                    alert ('Os campos precisam ser preenchidos corretamente');
+                    return false;
+                }
+                else{
+                    if(!validateUrl(printQuestions[i].answers[j].image)){
+                        alert ('As imagens precisam ter URL válidas');
+                        return false;
+                    }
+                    if (printQuestions[i].answers.length < 2) {
+                        alert ('Sua pergunta deve conter uma resposta certa e respostas erradas');
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    return true;
 }
 
