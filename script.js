@@ -3,6 +3,7 @@ let userQuizzes = [];
 let quizzAnswer = [];
 let quizzId;
 let correctAnswer = 0;
+let totalScore;
 
 function getAllQuizzes () {
     const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes');
@@ -169,10 +170,10 @@ function generateQuizzResult () {
 
         result.scrollIntoView();
 
-    document.querySelector('.successText p')
-
+    document.querySelector('.successText p').innerHTML = `
+    ${totalScore}% de acerto: `;
     
-    
+    //FALTA VALIDAR O NÍVEL QUE ENTROU COM A PONTUAÇÃO ALCANÇADA
 
 }
 
@@ -185,8 +186,8 @@ function calculateScore (){
         }           
     }   
 
-    const total = Math.round((correctAnswer / (allQuizzes[quizzId].questions.length)) * 100);
-    console.log(total);
+    totalScore = Math.round((correctAnswer / (allQuizzes[quizzId].questions.length)) * 100);
+    console.log(totalScore);
 }
 
 function startCreateQuizzes() {

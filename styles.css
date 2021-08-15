@@ -377,6 +377,10 @@ button:hover {
         width: 100%;
     }
 
+    .quizzCover {
+        width: 100%;
+    }
+
     .quizzCover img {
         height: 142px;       
     }
