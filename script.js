@@ -201,6 +201,7 @@ function startCreateQuizzes() {
     showCreateQuizzes.classList.remove('hide-class');
 }
 
+
 function comparator() { 
 	return Math.random() - 0.5; 
 }
