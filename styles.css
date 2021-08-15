@@ -56,6 +56,10 @@ button:hover {
     display: none;
 }
 
+.reduceOpacity {
+    opacity: 30%;
+}
+
 .userQuizzes {
     width: 1050px;
 }
@@ -236,6 +240,11 @@ button:hover {
     font-weight: bold;
     margin-top: 8px;
     margin-bottom: 16px;
+}
+
+.possibleAnswers li:hover {
+    cursor: pointer;
+    filter: brightness(80%);
 }
 
 .quizzResult {
