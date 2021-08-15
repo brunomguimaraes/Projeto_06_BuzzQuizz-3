@@ -139,5 +139,4 @@ function startCreateQuizzes() {
     const showCreateQuizzes = document.querySelector('.createQuizzes');
     showCreateQuizzes.classList.remove('hide-class');
 }
-
 enterQuizz();

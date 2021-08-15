@@ -11,7 +11,6 @@ function validateUrl(string) {
 }
 
 function validateCreateQuizzes() {
-
     if (quizzImg === '' || quizzTitle === '' || quizzLevels === '' || quizzQuestions === '') {
         alert ('Preencha todos os campos por favor');
         return false;
@@ -29,7 +28,6 @@ function validateCreateQuizzes() {
             alert ('URL inválida')
             return false;
         }
-        //validar a url para por ! aqui 
         if (quizzQuestions < 3) {
             alert ('O quizz deve conter no mínimo 3 perguntas');
             return false;
@@ -48,9 +46,10 @@ function finishCreateQuizzes() {
     quizzLevels = document.getElementById('isLevels').value; 
 
     if(validateCreateQuizzes() ) {
-        //chamar a próxima página 
-        alert ('deu certooo')
-    }
+        startCreateQuestions()
+        const enable = document.querySelector('.createQuestions')
+        enable.classList.remove('hide-class')
+    } 
 }
 
 function startCreateQuestions() {
@@ -67,7 +66,7 @@ function startCreateQuestions() {
                  <ion-icon name="create-outline"></ion-icon>
             </div>
             <div class="container-questions">       
-                <input type="text" class="questionText" spellcheck="true" placeholder="Texto da pergunta">
+                <input type="text" class="questionTitle" spellcheck="true" placeholder="Texto da pergunta">
                 <input type="text" class="questionColor" placeholder="Cor de fundo da pergunta">
 
                 <span>Resposta correta</span>
@@ -86,3 +85,25 @@ function startCreateQuestions() {
         `
     }
 }
+
+function finishCreateQuestions() {
+    let newQuestions = document.querySelectorAll('.questions');
+    let areaQuestion = {};
+
+    for (let i = 0; i < quizzQuestions; i++) {
+        areaQuestion = {
+            title: newQuestions[i].querySelector('.questionTitle').value,
+            color: newQuestions[i].querySelector('.questionColor').value
+        }
+
+        let correctAnswer = newQuestions[i].querySelector('.correctAnswer').value;
+        let correctAnswerImg = newQuestions[i].querySelector('.correctAnswerImg').value;
+        let incorrectAnswer1 = newQuestions[i].querySelector('.incorrectAnswer1').value;
+        let incorrectAnswerImg1 = newQuestions[i].querySelector('.incorrectAnswerImg1').value;
+        let incorrectAnswer2 = newQuestions[i].querySelector('.incorrectAnswer2').value;
+        let incorrectAnswerImg2 = newQuestions[i].querySelector('.incorrectAnswerImg2').value;
+        let incorrectAnswere3 = newQuestions[i].querySelector('.incorrectAnswere3').value;
+        let incorrectAnswerImg3 = newQuestions[i].querySelector('.incorrectAnswerImg3').value;
+    }
+}
+
