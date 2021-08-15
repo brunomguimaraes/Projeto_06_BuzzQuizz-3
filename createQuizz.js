@@ -17,8 +17,6 @@ function validateCreateQuizzes() {
         return false;
     }
     else {
-        quizzLevels = Number (quizzLevels);
-        quizzQuestions = Number (quizzQuestions);
         if (isNaN(quizzLevels) || isNaN(quizzQuestions)) {
             alert ('As perguntas e níveis devem ser números');
             return false;
@@ -52,5 +50,39 @@ function finishCreateQuizzes() {
     if(validateCreateQuizzes() ) {
         //chamar a próxima página 
         alert ('deu certooo')
+    }
+}
+
+function startCreateQuestions() {
+    const disableCreateBasic = document.querySelector ('.createQuizzes');
+    disableCreateBasic.classList.add ('hide-class');
+
+    let create = document.querySelector('.questioning');
+    create.innerHTML = '';
+    for (let i = 0; i < quizzQuestions; i++) {
+        create.innerHTML += `
+        <li class="questions">
+            <div class="subtitle">
+                 <span>Pergunta ${i + 1}</span>
+                 <ion-icon name="create-outline"></ion-icon>
+            </div>
+            <div class="container-questions">       
+                <input type="text" class="questionText" spellcheck="true" placeholder="Texto da pergunta">
+                <input type="text" class="questionColor" placeholder="Cor de fundo da pergunta">
+
+                <span>Resposta correta</span>
+                <input type="text" class="correctAnswer" spellcheck="true" placeholder="Resposta correta">
+                <input type="text" class="correctAnswerImg" placeholder="URL da imagem">
+                        
+                <span>Respostas incorretas</span>
+                <input type="text" class="incorrectAnswer1" spellcheck="true" placeholder="Resposta incorreta 1">
+                <input type="text" class="incorrectAnswerImg1" placeholder="URL da imagem 1">
+                <input type="text" class="incorrectAnswer2" spellcheck="true" placeholder="Resposta incorreta 2">
+                <input type="text" class="incorrectAnswerImg2" placeholder="URL da imagem 2">
+                <input type="text" class="incorrectAnswere3" spellcheck="true" placeholder="Resposta incorreta 3">
+                <input type="text" class="incorrectAnswerImg3" placeholder="URL da imagem 3">
+            </div>
+        </li>
+        `
     }
 }
