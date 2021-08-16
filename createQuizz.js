@@ -153,7 +153,7 @@ function finishCreateQuestions() {
         }
 
         printQuestions.push(areaQuestion);
-        areaQuestion.answers = areaAnswers; // dica do phyton para testar
+        areaQuestion.answers = areaAnswers;
         areaQuestion = {};
         areaAnswers = [];
         verify = {};
@@ -182,7 +182,7 @@ function validateCreateQuestions() {
                 return false;
             }
             if (!hexColor (printQuestions[i].color)){
-                alert ('Insira uma cor válida');
+                alert ('Insira uma cor válida, por exemplo #000000 (preto) ou #0000FF (azul)');
                 return false;
             }
             for (let j = 0; j < printQuestions[i].answers.length; j++) {
