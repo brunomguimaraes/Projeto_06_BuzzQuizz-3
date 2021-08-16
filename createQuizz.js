@@ -157,7 +157,10 @@ function finishCreateQuestions() {
         verify = {};
     }
     if ( validateCreateQuestions()){
-        alert ('deu certo')
+        CreateLevels()
+        const enable = document.querySelector('.createLevels')
+        enable.classList.remove('hide-class')
+
     }
     else{ 
         alert ('falhou')
@@ -201,5 +204,26 @@ function validateCreateQuestions() {
         }
     }
     return true;
+}
+
+function CreateLevels() {
+    const disable = document.querySelector ('.createQuestions')
+    disable.classList.add('hide-class');
+
+    let create = document.querySelector('.creatingLevels')
+    create.innerHTML = ''; 
+    for (let i = 0; i < quizzLevels; i++) {
+        create.innerHTML += `
+        <li class="levels">
+            <span class="title-create">Nível ${i + 1}</span>
+            <div class ="container-levels">
+                <input type="text" spellcheck="true" placeholder="Título do nível">
+                <input type="number" placeholder="% de acerto mínima">
+                <input type="text" placeholder="URL da imagem do nível">
+                <input class="description" type="text" spellcheck="true" placeholder="Descrição do nível">
+            </div>
+        </li>
+        `
+    }
 }
 
