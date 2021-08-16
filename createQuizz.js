@@ -1,6 +1,6 @@
 let quizzTitle, quizzImg = "";
 let quizzQuestions, quizzLevels = 0;
-let printQuestions = [];
+let printQuestions, zoneLevels = [];
 
 function validateUrl(string) {  
     try {
@@ -217,13 +217,34 @@ function CreateLevels() {
         <li class="levels">
             <span class="title-create">Nível ${i + 1}</span>
             <div class ="container-levels">
-                <input type="text" spellcheck="true" placeholder="Título do nível">
-                <input type="number" placeholder="% de acerto mínima">
-                <input type="text" placeholder="URL da imagem do nível">
-                <input class="description" type="text" spellcheck="true" placeholder="Descrição do nível">
+                <input type="text" class="levelTitle" spellcheck="true" placeholder="Título do nível">
+                <input type="number" class="levelPercentage" placeholder="% de acerto mínima">
+                <input type="text" class="levelImg" placeholder="URL da imagem do nível">
+                <input class="levelDescription" type="text" spellcheck="true" placeholder="Descrição do nível">
             </div>
         </li>
         `
     }
+}
+
+function finishCreateLevels() {
+    let newLevels = document.querySelector('.levels');
+    let areaLevels = {}
+
+    for (let i = 0; i < quizzLevels; i++) {
+        areaLevels = {
+            title: newLevels[i].querySelector('.levelTitle').value,
+            percentage: newLevels.querySelector('.levelPercentage').value,
+            image: newLevels.querySelector('.levelImg').value,
+            text: newLevels.querySelector('.levelDescription').value
+        };
+        zoneLevels.push(areaLevels);
+    }
+
+    //if () chamar função de validação
+}
+
+function validateCreateLevels() {
+    
 }
 
