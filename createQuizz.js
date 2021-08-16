@@ -2,6 +2,7 @@ let quizzTitle, quizzImg = "";
 let quizzQuestions, quizzLevels = 0;
 let printQuestions = [];
 let zoneLevels = [];
+let newQuizz = {};
 
 function validateUrl(string) {  
     try {
@@ -171,7 +172,6 @@ function finishCreateQuestions() {
 
 function validateCreateQuestions() {
     for (let i = 0; i < quizzQuestions; i++) {
-        console.log(printQuestions);
         if (printQuestions[i].title === '' || printQuestions[i].color === ''){
             alert ('Os campos precisam ser preenchidos');
             return false;
@@ -186,7 +186,6 @@ function validateCreateQuestions() {
                 return false;
             }
             for (let j = 0; j < printQuestions[i].answers.length; j++) {
-                console.log('entrei no fofo')
                 if (printQuestions[i].answers[j].text === '' || printQuestions[i].answers[j].image === ''){
                     alert ('Os campos precisam ser preenchidos corretamente');
                     return false;
@@ -243,7 +242,9 @@ function finishCreateLevels() {
     }
 
     if (validateCreateLevels()) {
-        alert('deu certo')
+        let disable = document.querySelector('.creationCompleted')
+        disable.classList.remove('hide-class')
+        CreateQuizz ()
     }
     else {
         zoneLevels = [];
@@ -251,11 +252,7 @@ function finishCreateLevels() {
 }
 
 function validateCreateLevels() {
-    console.log(zoneLevels)
-
     for ( let i = 0; i < quizzLevels; i++) {
-        console.log("entrei no for")
-        console.log(quizzLevels)
         zoneLevels[i].percentage = Number(zoneLevels[i].percentage);
         if(zoneLevels[i].title === '' || zoneLevels[i].image === '' || 
             zoneLevels[i].text === '' || zoneLevels[i].percentage === '') {
@@ -263,7 +260,6 @@ function validateCreateLevels() {
             return false;
         }
         if(zoneLevels[i].title.length < 10){
-            console.log(quizzLevels)
             alert ('O título deve conter no mínimo 10 caracteres');
             return false;
         }
@@ -282,5 +278,24 @@ function validateCreateLevels() {
         }
     }
     return true;
+}
+
+function newQuizzObj () {
+    newQuizz = {
+        title: quizzTitle,
+        image: quizzImg,
+        questions: printQuestions,
+        levels: zoneLevels
+    }
+}
+
+function CreateQuizz () {
+    const disable = document.querySelector ('.createLevels')
+    disable.classList.add('hide-class');
+
+    let create = document.querySelector('.creationCompleted');
+    create.innerHTML = ``
+    
+
 }
 
