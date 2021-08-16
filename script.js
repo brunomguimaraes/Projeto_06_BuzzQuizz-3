@@ -1,33 +1,12 @@
 let allQuizzes = [];
 let userQuizzes = [];
 let quizzAnswer = [];
-let quizzId;
+let quizzPosition;
 let correctAnswer = 0;
 let totalScore;
-
-function getAllQuizzes () {
-    const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes');
-
-    promise.then(loadAllQuizzes);
-}
-
-function loadAllQuizzes (response) {
-    allQuizzes = response.data;
-    console.log(response.data)
-
-    showAllQuizzes();
-    showUserQuizzes();
-
-    if (userQuizzes.length === 0) {
-        document.querySelector('.userQuizzes').classList.remove('hide-class');
-        document.querySelector('.emptyUserQuizzes').classList.remove('hide-class');
-        document.querySelector('.allQuizzes').classList.remove('hide-class');
-    } else {
-        document.querySelector('.userQuizzes').classList.remove('hide-class');
-        document.querySelector('.filledUserQuizzes').classList.remove('hide-class');
-        document.querySelector('.allQuizzes').classList.remove('hide-class');
-    }
-}
+let levelTitle = "initial";
+let levelImage = "initial";
+let levelText = "initial";
 
 function showUserQuizzes () {
     const ulQuizzes = document.querySelector('.filledUserQuizzes ul');
@@ -53,6 +32,30 @@ function showAllQuizzes () {
             <p class="quizzTitle">${allQuizzes[i].title}</p>
         </li>`
     }
+}
+
+function loadAllQuizzes (response) {
+    allQuizzes = response.data;
+    console.log(response.data)
+
+    showAllQuizzes();
+    showUserQuizzes();
+
+    if (userQuizzes.length === 0) {
+        document.querySelector('.userQuizzes').classList.remove('hide-class');
+        document.querySelector('.emptyUserQuizzes').classList.remove('hide-class');
+        document.querySelector('.allQuizzes').classList.remove('hide-class');
+    } else {
+        document.querySelector('.userQuizzes').classList.remove('hide-class');
+        document.querySelector('.filledUserQuizzes').classList.remove('hide-class');
+        document.querySelector('.allQuizzes').classList.remove('hide-class');
+    }
+}
+
+function getAllQuizzes () {
+    const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes');
+
+    promise.then(loadAllQuizzes);
 }
 
 function enterQuizz () {   
@@ -91,7 +94,7 @@ function findQuizz (quizz) {
 
     for (let i = 0; i < allQuizzes.length; i++) {
         if (title === allQuizzes[i].title) {
-            quizzId = i;
+            quizzPosition = i;
 
             document.querySelector('.quizzCover .quizzTitle').innerHTML = allQuizzes[i].title;
             document.querySelector('.quizzCover img').src = allQuizzes[i].image;
@@ -147,34 +150,20 @@ function findQuizz (quizz) {
     goToQuizzPage();   
 }
 
-function checkAnswer(answer) {
-    const selected = answer.parentNode.querySelectorAll('li');
-    for (let i = 0; i < selected.length; i++) {
-        selected[i].removeAttribute("onclick")        
+function validateLevel () {
+    levelImage = "";
+    levelText = "";
+    levelTitle = "";
+
+    for (let i = 0; i < allQuizzes[quizzPosition].levels.length; i++) {
+
+        if((totalScore >= allQuizzes[quizzPosition].levels[i].minValue)) {
+            levelTitle = allQuizzes[quizzPosition].levels[i].title;
+            levelImage = allQuizzes[quizzPosition].levels[i].image;
+            levelText = allQuizzes[quizzPosition].levels[i].text;
+            console.log("passou aqui", i);
+        }  
     }
-
-    quizzAnswer.push(answer);
-
-    if (quizzAnswer.length === allQuizzes[quizzId].questions.length) {     
-        setTimeout(generateQuizzResult, 2000);
-    }    
-}
-
-function generateQuizzResult () {
-    calculateScore();
-
-    const result = document.querySelector('.quizzResult')
-        result.classList.remove('hide-class');
-
-        document.querySelector('.resultButtons').classList.remove('hide-class');
-
-        result.scrollIntoView();
-
-    document.querySelector('.successText p').innerHTML = `
-    ${totalScore}% de acerto: `;
-    
-    //FALTA VALIDAR O NÍVEL QUE ENTROU COM A PONTUAÇÃO ALCANÇADA
-
 }
 
 function calculateScore (){
@@ -186,8 +175,41 @@ function calculateScore (){
         }           
     }   
 
-    totalScore = Math.round((correctAnswer / (allQuizzes[quizzId].questions.length)) * 100);
+    totalScore = Math.round((correctAnswer / (allQuizzes[quizzPosition].questions.length)) * 100);
     console.log(totalScore);
+
+    validateLevel();
+}
+
+function generateQuizzResult () {
+    const result = document.querySelector('.quizzResult')
+    result.classList.remove('hide-class');
+
+    document.querySelector('.resultButtons').classList.remove('hide-class');
+
+    result.scrollIntoView();
+
+    document.querySelector('.successText p').innerHTML = `
+    ${totalScore}% de acerto: ${levelTitle}`;
+
+    document.querySelector('.levelInfo img').src = levelImage;
+
+    document.querySelector('.levelInfo .levelText p').innerHTML = levelText;
+
+}
+
+function checkAnswer(answer) {
+    const selected = answer.parentNode.querySelectorAll('li');
+    for (let i = 0; i < selected.length; i++) {
+        selected[i].removeAttribute("onclick");        
+    }
+
+    quizzAnswer.push(answer);
+
+    if (quizzAnswer.length === allQuizzes[quizzPosition].questions.length) {     
+        setTimeout(generateQuizzResult, 2000);
+        calculateScore();
+    }    
 }
 
 function startCreateQuizzes() {
@@ -200,7 +222,6 @@ function startCreateQuizzes() {
     const showCreateQuizzes = document.querySelector('.createQuizzes');
     showCreateQuizzes.classList.remove('hide-class');
 }
-
 
 function comparator() { 
 	return Math.random() - 0.5; 
