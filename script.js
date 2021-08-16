@@ -42,7 +42,6 @@ the corresponding screen design
 */
 function loadAllQuizzes (response) {
     allQuizzes = response.data;
-    console.log(response.data)
 
     showAllQuizzes();
     showUserQuizzes();
@@ -184,7 +183,6 @@ function calculateScore (){
     }   
 
     totalScore = Math.round((correctAnswer / (allQuizzes[quizzPosition].questions.length)) * 100);
-    console.log(totalScore);
 
     validateLevel();
 }
@@ -221,7 +219,6 @@ function checkAnswer(answer) {
     for (let i = 0; i < selected.length; i++) {
         selected[i].removeAttribute("onclick");    
     }
-    console.log('depois',answer)
 
     quizzAnswer.push(answer);
 
