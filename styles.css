@@ -320,6 +320,16 @@ button:hover {
     border: 0;
 }
 
+/*FONTS*/
+
+.rightColor {
+    color: #009C22;
+}
+
+.wrongColor {
+    color: #FF0B0B;
+}
+
 
 @media (max-width: 1110px) {
 

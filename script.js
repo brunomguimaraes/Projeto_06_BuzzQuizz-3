@@ -161,7 +161,6 @@ function validateLevel () {
             levelTitle = allQuizzes[quizzPosition].levels[i].title;
             levelImage = allQuizzes[quizzPosition].levels[i].image;
             levelText = allQuizzes[quizzPosition].levels[i].text;
-            console.log("passou aqui", i);
         }  
     }
 }
@@ -200,9 +199,20 @@ function generateQuizzResult () {
 
 function checkAnswer(answer) {
     const selected = answer.parentNode.querySelectorAll('li');
-    for (let i = 0; i < selected.length; i++) {
-        selected[i].removeAttribute("onclick");        
+
+    const rightAnswer = answer.parentNode.querySelector('.correctAnswer');
+    rightAnswer.classList.add('rightColor');
+
+    const wrongAnswer = answer.parentNode.querySelectorAll('.wrongAnswer');    
+
+    for (let i = 0; i < wrongAnswer.length; i++) {
+        wrongAnswer[i].classList.add('wrongColor');        
     }
+
+    for (let i = 0; i < selected.length; i++) {
+        selected[i].removeAttribute("onclick");    
+    }
+    console.log('depois',answer)
 
     quizzAnswer.push(answer);
 
