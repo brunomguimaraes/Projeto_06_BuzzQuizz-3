@@ -1,6 +1,7 @@
 let quizzTitle, quizzImg = "";
 let quizzQuestions, quizzLevels = 0;
-let printQuestions, zoneLevels = [];
+let printQuestions = [];
+let zoneLevels = [];
 
 function validateUrl(string) {  
     try {
@@ -228,23 +229,58 @@ function CreateLevels() {
 }
 
 function finishCreateLevels() {
-    let newLevels = document.querySelector('.levels');
+    let newLevels = document.querySelectorAll('.levels');
     let areaLevels = {}
 
     for (let i = 0; i < quizzLevels; i++) {
         areaLevels = {
             title: newLevels[i].querySelector('.levelTitle').value,
-            percentage: newLevels.querySelector('.levelPercentage').value,
-            image: newLevels.querySelector('.levelImg').value,
-            text: newLevels.querySelector('.levelDescription').value
+            percentage: newLevels[i].querySelector('.levelPercentage').value,
+            image: newLevels[i].querySelector('.levelImg').value,
+            text: newLevels[i].querySelector('.levelDescription').value
         };
         zoneLevels.push(areaLevels);
     }
 
-    //if () chamar função de validação
+    if (validateCreateLevels()) {
+        alert('deu certo')
+    }
+    else {
+        zoneLevels = [];
+    }
 }
 
 function validateCreateLevels() {
-    
+    console.log(zoneLevels)
+
+    for ( let i = 0; i < quizzLevels; i++) {
+        console.log("entrei no for")
+        console.log(quizzLevels)
+        zoneLevels[i].percentage = Number(zoneLevels[i].percentage);
+        if(zoneLevels[i].title === '' || zoneLevels[i].image === '' || 
+            zoneLevels[i].text === '' || zoneLevels[i].percentage === '') {
+            alert ('Preencha todos os campos, por favor');
+            return false;
+        }
+        if(zoneLevels[i].title.length < 10){
+            console.log(quizzLevels)
+            alert ('O título deve conter no mínimo 10 caracteres');
+            return false;
+        }
+        
+        if(!validateUrl(zoneLevels[i].image)) {
+            alert ('Insira uma URL válida');
+            return false;
+        }
+        if(zoneLevels[i].text.length < 30) {
+            alert ('A descrição deve ter no mínimo 30 caracteres');
+            return false;
+        }
+        if(zoneLevels[i].percentage.length >= 0 || zoneLevels[i].percentage.length <= 100) {
+            alert ('A porcentagem de acertos deve estar entre 0 e 100');
+            return true;
+        }
+    }
+    return true;
 }
 
