@@ -1,13 +1,14 @@
-let allQuizzes = [];
-let userQuizzes = [];
-let quizzAnswer = [];
-let quizzPosition;
-let correctAnswer = 0;
-let totalScore;
+let allQuizzes = []; //contain all the quizzes from the server
+let userQuizzes = []; // contain all the user quizzes
+let quizzAnswer = []; //contain the selected answers from a question
+let quizzPosition; // defines the array's position of the selected quizz
+let correctAnswer = 0; //initialize the counter of correct answers
+let totalScore; // shows the total quizz score
 let levelTitle = "initial";
 let levelImage = "initial";
 let levelText = "initial";
 
+/*displays at screen 1 all of the user quizzes' cover and title, if there is any*/
 function showUserQuizzes () {
     const ulQuizzes = document.querySelector('.filledUserQuizzes ul');
     ulQuizzes.innerHTML = "";
@@ -21,6 +22,7 @@ function showUserQuizzes () {
     }
 }
 
+/*displays at screen 1 all of the quizzes' cover and title*/
 function showAllQuizzes () {
     const ulQuizzes = document.querySelector('.allQuizzes ul');
     ulQuizzes.innerHTML = "";
@@ -34,6 +36,10 @@ function showAllQuizzes () {
     }
 }
 
+/*recieve the response from the server, containing the quizzes
+verify if there is any quizz from the user, and displays correctly 
+the corresponding screen design
+*/
 function loadAllQuizzes (response) {
     allQuizzes = response.data;
     console.log(response.data)
@@ -52,12 +58,14 @@ function loadAllQuizzes (response) {
     }
 }
 
+/*send a GET action to the server, asking for the quizzes*/
 function getAllQuizzes () {
     const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes');
 
     promise.then(loadAllQuizzes);
 }
 
+/*start everything, as if its the first time, even when coming from other pages*/
 function enterQuizz () {   
 
     document.querySelector('.userQuizzes').classList.add('hide-class');
@@ -76,6 +84,7 @@ function enterQuizz () {
     getAllQuizzes();
 }
 
+/*displays the selected quizz page*/
 function goToQuizzPage (){
     window.scrollTo(0, 0);
     document.querySelector('.userQuizzes').classList.add('hide-class');
